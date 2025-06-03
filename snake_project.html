@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Snake en C - Titouan GUIMARD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card h4 {
+            color: #555;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card p, .card li {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 3rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .code-preview {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .download-section {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .timeline-date {
+                left: 20px;
+                transform: none;
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="portfolio.html" class="back-btn">← Retour au Portfolio</a>
+            <h1>Jeu du Serpent en C</h1>
+            <p class="subtitle">Projet de développement sur 4 semaines - IUT de Lannion</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>Vue d'ensemble</h2>
+                <p>Ce projet consiste en le développement d'un <strong class="highlight">jeu du serpent complet</strong> en langage C, réalisé sur une période de 4 semaines dans le cadre de ma formation en BUT Informatique à l'IUT de Lannion.</p>
+                
+                <h4>Objectifs pédagogiques :</h4>
+                <ul>
+                    <li>Maîtriser la programmation en C</li>
+                    <li>Comprendre la gestion mémoire</li>
+                    <li>Implémenter des structures de données</li>
+                    <li>Gérer les entrées/sorties système</li>
+                    <li>Développer par versions successives</li>
+                </ul>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Semaines</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Versions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Lignes de code</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Technologies utilisées</h2>
+                <div class="tech-stack">
+                    <span class="tech-tag">Langage C</span>
+                    <span class="tech-tag">Terminal</span>
+                </div>
+
+                <h4>Environnement de développement :</h4>
+                <ul>
+                    <li><strong>Compilateur :</strong> CC</li>
+                    <li><strong>Système :</strong> Linux</li>
+                    <li><strong>Terminal :</strong> Interface console</li>
+                    <li><strong>Édition :</strong> VS Code</li>
+                </ul>
+
+                <h4>Bibliothèques utilisées :</h4>
+                <ul>
+                    <li><code>stdio.h</code> - Entrées/sorties</li>
+                    <li><code>stdlib.h</code> - Fonctions système</li>
+                    <li><code>termios.h</code> - Contrôle terminal</li>
+                    <li><code>unistd.h</code> - Appels système Unix</li>
+                    <li><code>time.h</code> - Gestion du temps</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2><span class="emoji">📈</span>Évolution du projet - 4 semaines de développement</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Version 1 - Base du jeu</h3>
+                        <p><strong>Objectif :</strong> Créer l'infrastructure de base du jeu</p>
+                        <ul>
+                            <li>Initialisation de la grille de jeu (<code>plateau[HAUTEUR][LARGEUR]</code>)</li>
+                            <li>Affichage basique du plateau avec <code>system("clear")</code></li>
+                            <li>Définition des constantes et macros</li>
+                            <li>Représentation du serpent avec des caractères ASCII</li>
+                        </ul>
+                        <div class="code-preview">
+#define HAUTEUR 20
+#define LARGEUR 40
+char plateau[HAUTEUR][LARGEUR];
+// 'O' pour la tête, 'X' pour les anneaux</div>
+                    </div>
+                    <div class="timeline-date">Semaine 1</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Version 2 - Mouvement du serpent</h3>
+                        <p><strong>Objectif :</strong> Implémenter le déplacement en temps réel</p>
+                        <ul>
+                            <li>Gestion des touches de contrôle (z, s, q, d)</li>
+                            <li>Lecture non-bloquante du clavier avec <code>termios</code></li>
+                            <li>Logique de déplacement du serpent</li>
+                            <li>Gestion des collisions avec les murs</li>
+                        </ul>
+                        <div class="code-preview">
+struct termios old_tio, new_tio;
+tcgetattr(STDIN_FILENO, &old_tio);
+// Configuration pour lecture non-bloquante</div>
+                    </div>
+                    <div class="timeline-date">Semaine 2</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Version 3 - Ajout d'obstacles</h3>
+                        <p><strong>Objectif :</strong> Complexifier le gameplay avec des obstacles</p>
+                        <ul>
+                            <li>Création de la structure <code>Pave</code></li>
+                            <li>Génération aléatoire d'obstacles sur la carte</li>
+                            <li>Gestion des collisions serpent-obstacles</li>
+                            <li>Fin de partie en cas de collision</li>
+                        </ul>
+                        <div class="code-preview">
+typedef struct {
+    int x, y;
+    int largeur, hauteur;
+} Pave;
+
+Pave obstacles[NB_PAVES];</div>
+                    </div>
+                    <div class="timeline-date">Semaine 3</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Version 4 - Pommes et croissance</h3>
+                        <p><strong>Objectif :</strong> Finaliser le jeu avec un système de score</p>
+                        <ul>
+                            <li>Apparition aléatoire de pommes ('6')</li>
+                            <li>Croissance du serpent lors de la consommation</li>
+                            <li>Régénération automatique des pommes</li>
+                            <li>Optimisation des performances</li>
+                        </ul>
+                        <div class="code-preview">
+// Si le serpent mange une pomme
+if (plateau[nouvelle_tete_y][nouvelle_tete_x] == '6') {
+    taille_serpent++;
+    generer_nouvelle_pomme();
+}</div>
+                    </div>
+                    <div class="timeline-date">Semaine 4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>Fonctionnalités techniques</h2>
+                
+                <h4>Gestion mémoire :</h4>
+                <ul>
+                    <li>Allocation dynamique pour le serpent</li>
+                    <li>Structures optimisées pour les performances</li>
+                    <li>Gestion propre des pointeurs</li>
+                </ul>
+
+                <h4>Interface utilisateur :</h4>
+                <ul>
+                    <li>Affichage en temps réel</li>
+                    <li>Contrôles intuitifs (ZQSD)</li>
+                    <li>Effacement d'écran optimisé</li>
+                </ul>
+
+                <h4>Algorithmes implémentés :</h4>
+                <ul>
+                    <li>Détection de collision</li>
+                    <li>Génération aléatoire</li>
+                    <li>Suivi de la queue du serpent</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Défis relevés</h2>
+                
+                <h4>Programmation système :</h4>
+                <ul>
+                    <li><strong>Lecture non-bloquante :</strong> Utilisation de termios pour capturer les touches sans arrêter le jeu</li>
+                    <li><strong>Gestion du terminal :</strong> Contrôle de l'affichage console</li>
+                </ul>
+
+                <h4>Algorithmes de jeu :</h4>
+                <ul>
+                    <li><strong>Mouvement du serpent :</strong> Suivi coordonné de chaque segment</li>
+                    <li><strong>Détection de collision :</strong> Vérification efficace des limites et obstacles</li>
+                </ul>
+
+                <h4>Architecture logicielle :</h4>
+                <ul>
+                    <li><strong>Code modulaire :</strong> Séparation des responsabilités</li>
+                    <li><strong>Évolutivité :</strong> Ajout progressif de fonctionnalités</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Compétences développées</h2>
+            <div class="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                    <h4>Programmation C avancée</h4>
+                    <p>Maîtrise des pointeurs, structures, et gestion mémoire</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                    <h4>Programmation système</h4>
+                    <p>Interaction avec l'OS, appels système Unix</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                    <h4>Développement itératif</h4>
+                    <p>Conception par versions successives</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                    <h4>Algorithmes de jeu</h4>
+                    <p>Logique de gameplay, collision detection</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2>Télécharger le projet</h2>
+            <p>Le code source complet avec toutes les versions est disponible au téléchargement.</p>
+            <p style="margin: 1rem 0;"><strong>Contenu du package :</strong> Code source C, Makefile, documentation, versions intermédiaires</p>
+            <a href="fichier/snake.zip" download="snake.zip" class="download-btn">
+                Télécharger snake.zip
+            </a>
+            <a href="fichier/CV TG Lannion.pdf" download="CV TG Lannion.pdf" class="download-btn">
+                Mon CV
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Animation des éléments au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer tous les éléments card
+        document.querySelectorAll('.card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Animation des éléments de timeline
+        document.querySelectorAll('.timeline-content').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
