@@ -1,0 +1,78 @@
+@use "../../tools/vback" as *;
+//@use "../../tools/vFront" as *;
+@use "./styleComB" as *;
+
+
+main {
+    display: flex;
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    h1, h2 {
+        font-family: $Poltitle;
+    }
+    p {
+        font-family: $Poltext;
+    }
+}
+
+.right-content{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 28px;
+}
+
+body{
+    background-color: #eaeaea;
+}
+
+.nav-btn{
+    margin-top: 28px;
+}
+
+
+
+.btnSupprReduc{
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 8px;
+    display: flex;
+    justify-self: left;
+    background-color: rgb(255, 0, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(255, 67, 67);
+    }
+}
+
+.produit{
+    height: 27em;
+    width: 18em;
+
+    .infoPromo{
+        color: red;
+        padding: 0 10px;
+    }
+}
+
+.produit-remise{
+    height: 30em;
+}
+
+.remise{
+    color: red;
+    margin-left: 10px;
+}
+
+.prixNormal{
+    text-decoration: line-through;
+    color: grey;
+}

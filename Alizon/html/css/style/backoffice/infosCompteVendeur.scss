@@ -1,0 +1,162 @@
+@use '../../tools/vback' as *;
+@use "../../tools/mixin/com" as *;
+
+
+@use 'sass:color';
+@use './_styleComB'; 
+@use "../infosCompte.scss";
+
+.logo {
+    display : flex;
+}
+.bouton{
+    @include bouton($colP);
+    
+
+}
+.btnJaune{
+    @include bouton($eleBleu);
+
+}
+form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding:0;
+    width:100%;
+    
+    input{
+        height:4em;
+    }
+    .labelInput{
+        margin: 3% 0;
+    }
+    #profResp, #entreprise{
+        width:100%;
+    }
+
+    #nomPrenomVendeur, #numNomRue, #cpVille{
+        display:flex;
+        justify-content:space-between;
+
+    }
+    #numNomRue{
+        @include inputDouble(20%, 70%);
+    }
+    #cpVille{
+        @include inputDouble(40%, 50%);      
+    }
+
+    #nomPrenomVendeur{
+        gap: 1em;
+    }
+
+
+}
+    #valider{
+        padding:1em;
+        border:none;
+        width: 20%;
+        max-width: 40em;
+        margin-top:2em;
+    }
+.containerForm{
+    padding:3%;
+    width:70%;
+}
+.boutonsCompte{
+    width:50%;
+    display:flex;
+    justify-content: space-between;
+    margin:2em 0 ;
+    button{
+        padding:1em;
+        width:40%;
+        border:none;
+    }
+}
+#modifInfos, #annuler, #deconnexion{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+#modifmdp{
+    display: none;
+}
+[popover]:popover-open::backdrop{
+    background-color: rgb(0 0 0 / 30%);
+}
+[popover]:popover-open{
+    border: {
+        radius:$radius;
+        width:0.1em;
+    }
+    padding:$pad;
+    width:50%;
+
+    form{
+        label{
+            font-size:18px;
+        }
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        input{
+            width:100%;
+           
+        }
+
+
+    }
+}
+#overlayMdp{
+    height:auto;
+}
+.annuler{
+
+    max-width: 40em;
+    width: 100%;
+}
+
+.btn-retour{
+    position: fixed;
+    top: 1em;
+    left: 1em;
+}
+
+
+details summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary h3 {
+    margin: 0;
+    text-align: left;
+    text-decoration: underline;
+
+    
+}
+
+h3{
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3:hover{
+    background-color: #cbcbcb;
+}
+
+details:open summary h3{
+    text-align: center;
+}
+
+

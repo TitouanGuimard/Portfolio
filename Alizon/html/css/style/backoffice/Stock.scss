@@ -1,0 +1,85 @@
+@use "./_styleComB" as *;
+@use "../../tools/vback" as *;
+@use "../../components/carte";
+@import url("bootstrap/scss/utilities/api");
+
+.vide {
+    padding: $pad;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 40%;
+
+    a {
+        color: grey;
+        text-decoration: none;
+        font-weight: lighter;
+        font-style: italic;
+    }
+}
+a {
+    text-decoration: none;
+}
+.titre-cat{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.separateur {
+    display: block;
+    background-color: $eleOrange;
+    width: auto;
+    height: 10px;
+    border-radius: $radius;
+
+
+}
+h1{
+    display: block;
+    margin: {
+        top: $pad;
+        left: $pad;
+    }
+}
+h2 {
+    margin: {
+        top: $pad;
+        left: #{$pad * 2};
+        
+    }
+
+}
+.card{
+    background-color: $colS;
+    flex: 0 0 auto;
+    margin-top: $marg;
+    .button{
+        display :flex;
+        justify-content: center;
+        align-content: center;
+        font-family: $Poltext;
+        width: 100%;
+        margin-top : $marg;
+        min-width: 8rem;
+        background-color: $eleBleu;
+        height: 2rem;
+        text-align: center;
+        color : $blanc;
+        font-weight: bold;
+        border:none;
+        border-radius: $radius;
+        cursor:pointer;
+        
+    }
+    
+}
+
+article{
+    flex-wrap: wrap;
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $marg;
+    
+}
