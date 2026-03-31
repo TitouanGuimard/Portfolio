@@ -1,0 +1,146 @@
+@use './styleCom' as *;
+@use '../tools/vFront' as *;
+@use "../tools/mixin/com" as *;
+@use 'sass:color';
+
+header{
+    justify-self:center;
+    margin :1em 0;
+}
+main{
+    padding-bottom:2em;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+form{
+    border:#A1A1A1 solid 0.01em;
+    border-radius:$radius;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    width:50em;
+    margin-top:1em;
+    align-self:center;
+    padding:2em;
+    @media #{$mobile}{
+        width:90%;
+        padding:1em;
+        align-items:center;
+        input{
+            width:80%;
+        }
+        label{
+            align-self:flex-start;
+            font-size:0.8em;
+        }
+    }
+    span{
+        display:none;
+        //color:#6e6e6e;
+        color:red;
+    }
+    input{
+        border:solid 1px;
+        border-radius:$radius;
+        height:3em;
+        margin:10px 0;
+        padding:10px;
+        &::file-selector-button{
+            @include bouton;
+        }
+        &#photoCli{
+            border:none;
+            font-size:0.8em;
+            
+        }
+        &:user-invalid, &.invalid{
+            border-color:red;
+            &+span{
+                display:block;
+                
+            }
+        }
+
+        @media #{$mobile}{
+            width:100%;
+            &::placeholder{
+                font-size:0.9em;
+            }
+            
+        }
+    }
+    .bouton{
+        height:5em;
+        font-size:$MoyTitle;
+        @media #{$mobile}{
+            height:4em;
+        }
+    }
+
+    .btnSec{
+        background-color: $eleBleu;
+    }
+
+}
+
+#nomCli{
+    width:100%;
+}
+
+
+.labelInput{
+    display:flex;
+    flex-direction: column;
+    @media #{$mobile} {
+        display:block;
+        width:100%;
+    }
+}
+
+
+aside{
+    display:flex;
+    flex-direction: column;
+    justify-self:center;
+    font-family: 'mulish';
+    figure{
+        display:flex;
+        img{
+            margin: 0 5px;
+            width: 100px;
+            @media screen and ($mobile){
+                width: 17%;
+                height:50px;
+            }
+        }
+       
+        }
+    }
+
+    .bouton{
+        @include bouton;
+        height: 4rem;
+        padding:1em;
+        width:100%;
+        margin-bottom:1em;
+        
+    }
+
+    .btnJaune{
+        @include bouton($eleOrange);
+        height: 4rem;
+        padding:1em; 
+        width:70%;
+    }
+
+    .bouton-connexion{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        a{
+            text-decoration:none;
+        }
+    }
+
+

@@ -1,0 +1,131 @@
+@use "./styleCom" as *;
+@use "../tools/vFront" as *;
+@use '../tools/mixin/com' as *;
+
+h4{
+    margin: 0px;
+}
+main{
+    display:flex;
+    justify-content: center;
+}
+
+main>section{
+    background-color: $colS;
+    border-radius: $radius;
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    padding: 20px;
+    width: 45%;
+    height: 45%;
+    margin: 15px;
+        @media #{$mobile} {
+            width: 90%;
+        }
+}
+main>section>.content{
+    display:flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ligneCompteurBoutons{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    width: 350px;
+}
+
+.boutons{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+main>section>.content>p{
+    width: 300px;
+    margin-top: 0;
+}
+main>section>.content>figure>figcaption{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#retour{
+    display: none;
+}
+
+.label-retour{
+    cursor: pointer;
+    font-family: $Poltext;
+    width: 120px;
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    margin-top: 20px;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
+
+.btn-retour{
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:10px;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
+
+.btnJaune{
+        @include bouton;
+        background-color:$eleOrange;
+        padding:$pad; 
+        color:black;
+        width:100%;
+        
+        margin:5px;
+        //text-justify: center;
+        //text-align: center;
+}
+
+.compteur {
+        //min-width: 150%;
+        grid-area: 1 / 3 / 2 / 4;
+        height: 80%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        
+        
+        
+        button{
+            margin: 0;
+            padding: 5px;
+            background-color: $blanc;
+            border: 2px solid $noir;
+            min-width: 10%;
+            cursor: pointer;
+            &:first-child {
+                border-radius: $radius 0 0 $radius;
+            }
+
+            &:last-child {
+                border-radius: 0 $radius $radius 0;
+            }
+           
+
+        }
+
+        p {
+            padding: 10px $pad;
+            background-color: $blanc;
+            align-content: center;
+            margin:0;
+            border-top: 2px solid $noir;
+            border-bottom: 2px solid $noir;
+            
+        }
+        
+    }
+

@@ -1,0 +1,114 @@
+@use '../tools/vback' as *;
+@use '../style/backoffice/styleComB.scss' as *;
+@use '../tools/mixin/com' as *;
+
+
+main{
+    padding-bottom: 2em;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    h2{
+        font-family: 'baloo';
+    }
+    div{
+    margin-top: $marg;
+    display:flex;
+    flex-direction: row;
+        a{
+            margin-right: 5px;
+        }
+        h2{
+            margin-left: 5px; 
+        }
+}
+}
+
+
+form{
+    background-color: $blanc;
+    border:#A1A1A1 solid 0.01em;
+    border-radius:$radius;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    width:35em;
+    margin-top: 1em;
+    justify-self:center;
+    padding:2em;
+    font-family: 'mulish';
+    
+    input{
+        background-color: #eaeaea;
+        border:solid 1px;
+        border-radius:$radius;
+        height:3em;
+        margin:10px 0;
+        padding:10px;
+        &::placeholder{
+            color: #3D3846;
+        }
+    }
+    .bouton{
+    @include bouton($colP);
+    height: 4em;
+    color:white;
+    font-family: 'mulish';
+    font-size:16px;
+    width: 100%;
+    }
+
+    label{
+        font-weight:bold;
+    }
+    >h2{
+        margin:0;
+        font-family: baloo;
+    }
+    p{
+        color: darkred;
+    }
+    h4{
+        font-family: baloo;
+        margin:0 0 10px;
+    }
+}
+
+
+aside{
+    display:flex;
+    flex-direction: column;
+    justify-self:center;
+    font-family: 'mulish';
+    figure{
+        display:flex;
+        justify-content: center;
+        img{
+            margin: 0 5px;
+            width: 100px;
+            
+        }
+        
+    }
+       
+        
+    }
+
+    .bouton{
+        @include bouton($colP);
+        padding:1em;
+        width:80%;
+        
+    }
+
+    
+
+    nav{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        a{
+            text-decoration:none;
+            color:white;
+        }
+    }

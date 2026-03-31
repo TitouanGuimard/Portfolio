@@ -1,0 +1,642 @@
+@use "./styleCom" as *;
+@use "../tools/vFront" as *;
+@use "../components/fonts" as *;
+
+body{
+    margin: 0;  
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    margin: {
+        left:40px;
+        right:40px;
+    }
+
+    @media screen and (max-width: 428px){
+        margin: {
+            left:20px;
+            right:20px;
+        }
+    }
+}
+
+.prod{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @media screen and (max-width: 428px){
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+.detail-produit {
+    display: flex;
+    flex-direction: row;
+    background-color: $colS;
+    padding: 20px;
+    width: 60%;
+
+    border-radius: 16px;
+    margin-top: 20px;
+
+    .detail-produit-content{
+        height: 340px;
+        display: flex;
+        flex-direction: row;
+
+        .info-produit {
+            margin-left: 50px;
+            display: flex;
+            flex-direction: column;
+
+            h1{
+                margin: {
+                    top: 0;
+                    bottom: 0;
+                }
+            }
+        }
+
+        .prix {
+            align-self: flex-end;
+            margin-top: 20px;
+            border-top: 2px solid $colP;
+            padding-top: 5px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        
+        img {
+            width: 340px;
+            height: 340px;
+            border-radius: 8px;
+        }
+
+        
+    }
+
+    @media screen and (max-width: 428px){
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+
+        .detail-produit-content{
+            height: auto;
+            display: flex;
+            flex-direction: column;
+
+            .info-produit {
+                margin-left: 0;
+            }
+
+            .prix{
+                border: none;
+            }
+            img{
+                align-self: center;
+                width: 65%;
+                height: 65%;
+            }
+        }
+    }
+
+
+
+    
+}
+
+.partie-droite {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @media screen and (max-width: 428px){
+        padding-top: 0;
+        gap: 10px;
+    }
+}
+
+/*################################*/
+/* ----------- PANIER ----------- */
+/*################################*/
+
+.panier-section {
+    background-color: $colS;
+    padding: 20px;
+    width: 420px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .price {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: $colP;
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        select {
+            padding: 5px 8px;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+    }
+
+    .add-to-cart {
+        background-color: $eleOrange;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: $noir;
+
+    }
+
+    .add-to-cart:visited {
+        color: $noir;
+    }
+
+    @media screen and (max-width: 428px){
+        padding-top: 0;
+        width: 90%;
+        background-color: $blanc;
+
+        .price{
+            margin-top: 10px;
+        }
+
+        .quantity{
+            display: flex;
+            flex-direction: row;
+            background-color: $eleOrange;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            justify-content: center;
+
+            select{
+                border: none;
+                background-color: $eleOrange;
+                align-self: center;
+                font-weight: bold;
+            }
+
+            label{
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+
+        .add-to-cart {
+            width: 100%;
+            text-align: center;
+            color: $blanc;
+            background-color: $colP;
+            padding: 10px;
+        }
+    }
+}
+
+/*################################*/
+/* ------------ AVIS ------------ */
+/*################################*/
+
+.avis-section {
+    //background-color: $colS;
+    padding: 25px;
+    width: 420px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .noter {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .noter span {
+        font-size: 2.4rem;
+        cursor: pointer;
+        color: transparent;
+        -webkit-text-stroke: 2px #f5b301; 
+        transition: 0.2s;
+    }
+
+    .noter span.full {
+        color: #f5b301;
+        -webkit-text-stroke: 2px #f5b301;
+    }
+
+
+    textarea {
+        align-self: center;
+        width: 90%;
+        height: 180px;
+        border-radius: 8px;
+        border: 1px solid #444;
+        padding: 10px;
+        resize: none;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        font-family: $Poltext;
+        font-weight: 500;
+    }
+
+    .plein-buttons {
+        padding-right: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 30px;
+
+        button {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            color: $noir;
+        }
+
+        .cancel {
+            background-color: $inverse;
+        }
+
+        .submit {
+            background-color: $eleOrange;
+        }
+
+        .photo{
+            background-color: $eleOrange;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        @media screen and (max-width: 428px){
+            gap: 15px;
+            padding-right: 0;
+
+            .photo, .cancel, .submit {
+                padding: 8px 12px;
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+            justify-content: center;
+        }
+
+    }
+
+    @media screen and (max-width: 428px){
+        width: 100%;
+        padding: 0;
+    }
+}
+
+.liste-avis{
+    border-radius: 8px;
+    border: 1px solid #444;
+    height: 400px;
+}
+
+.avis-produits{
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#retour{
+    display: none;
+}
+
+.label-retour{
+    cursor: pointer;
+    font-family: $Poltext;
+    width: 120px;
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    margin-top: 20px;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
+
+.btn-retour{
+    display: flex;
+    align-items: end;
+    text-decoration:underline;
+    margin:$marg;
+    color:#A1A1A1;
+    font-size: $PetTitle;
+}
+
+/*################################*/
+/*-------- affichage avis --------*/
+/*################################*/
+
+.avis-produits {
+    margin-top: 40px;
+}
+
+.liste-avis {
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;   
+    overflow-y: auto;    
+    gap: 15px; 
+    
+    p{
+        padding-left: 20px;
+    }
+
+    // @media screen and (max-width: 428px){
+    //     width: 90%;
+    // }
+}
+
+.avis {
+    background: #fff;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+
+    @media screen and (max-width: 428px){
+        width: 90%;
+    }
+}
+
+.avis-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.commentaire {
+    margin-top: 10px;
+    @media screen and (max-width: 428px){
+        width: 90%;
+    }
+}
+
+.note {
+    color: #f5b301;
+    font-size: 20px;
+}
+
+.note .star {
+    font-size: 1rem;
+    color: transparent;
+    -webkit-text-stroke: 1px #f5b301; 
+    margin: 0;
+    padding: 0;
+}
+
+.note .star.full {
+    color: #f5b301;
+}
+
+
+.date {
+    font-size: 13px;
+    color: $colP;
+}
+
+
+.photos-avis {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.photo-avis {
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+
+    @media screen and (max-width: 428px){
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/*################################*/
+/* -------- évaluation ----------*/
+
+.evaluation-produit {
+    margin: 20px 0;
+}
+
+.evaluation {
+    margin-left: 200px;
+    display: flex;
+    //justify-content: space-between;
+    gap: 200px;
+    align-items: center;
+
+    @media screen and (max-width: 428px){
+        margin-left: 0;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+    }
+}
+
+.eval-moy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: $eleBleu;
+}
+
+.score-moyen {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $eleBleu;
+}
+
+.etoiles {
+    margin-top: 5px;
+}
+
+.etoile {
+    color: #ccc;
+    font-size: 1.5rem;
+}
+
+.etoile.pleine {
+    color: #f5b301;
+}
+
+.total {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.repartition-notes {
+    width: 50%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media screen and (max-width: 428px){
+        width: 90%;
+        padding-left: 0;
+    }
+}
+
+.note-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.note-label {
+    width: 50px;
+    font-size: 1rem;
+    color: $colP;
+}
+
+.progression-note {
+    flex: 1;
+    height: 12px;
+    background-color: #eee;
+    margin-left: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barre-progression {
+    height: 100%;
+    background-color: $eleBleu;
+    border-radius: 10px;
+}
+
+.nbr-note {
+    width: 30px;
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+}
+
+
+/*################################*/
+/* ----photo zoom avis ---------- */
+/*################################*/
+
+#overlay{
+    @media screen and (min-width: 428px){
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 50em;
+        height: 50em;
+        padding: 100%;
+        background: rgba(0,0,0,0.8);
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+    @media screen and (max-width: 700px){
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 20em;
+        height: 20em;
+        padding: 100%;
+        background: rgba(0,0,0,0.8);
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+}
+
+.actions-avis, .signalement-avis {
+    margin-bottom: 10px;
+    text-align: right;
+
+    a {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            color: $noir;
+            background-color: $eleOrange;
+            text-decoration: none;
+    }
+
+}
+
+.bouttonSignalement {
+    padding-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+
+    button {
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: none;
+        color: $noir;
+    }
+
+    .cancel {
+        background-color: $inverse;
+    }
+
+    .submit {
+        background-color: $eleOrange;
+    }
+}
+
+.overlaymodifier, .overlaysignaler  {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    form {
+        width: 40%;
+        background-color: white;
+        height: 40%;
+    }
+}
+
+#btnModifierAvis{
+    cursor: pointer;
+}

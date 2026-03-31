@@ -1,0 +1,506 @@
+@use './styleCom' as *;
+@use '../tools/vFront' as *;
+@use "../tools/mixin/com" as *;
+@use 'sass:color';
+@use 'sass:math';
+
+#mainAdr {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(241, 241, 241);
+}
+
+span {
+    display: none;
+    margin-bottom: 1em;
+}
+
+.asideSec {
+    display: flex;
+    justify-content: space-between;
+
+    @media #{$mobile} {
+        flex-direction: column-reverse;
+        font-size: 12px;
+    }
+}
+
+article {
+    background-color: white;
+    width: 100%;
+    height: 30%;
+    border-radius: 1em;
+
+}
+
+#navMobile {
+    display: none;
+
+    @media #{$mobile} {
+        display: flex;
+    }
+}
+
+#navTablette {
+    display: flex;
+
+    @media #{$mobile} {
+        display: none;
+    }
+}
+
+.labelInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.ligneSection {
+    //display:flex;
+    //justify-content:center;
+
+    padding: 1rem;
+
+    @media #{$mobile} {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    #adresseLivraison {
+        width: 100%;
+        justify-self: center;
+
+        article,
+        h2 {
+            justify-self: center;
+            width: 80%;
+        }
+    }
+
+    section {
+        width: 100%;
+        margin: 5rem 0;
+
+        @media #{$mobile} {
+            margin-left: 0;
+
+        }
+    }
+
+    section:nth-child(1) {
+        article {
+            width: 100%;
+            padding: 3em;
+
+            @media #{$mobile} {
+                padding: 2em;
+            }
+
+            .conteneur {
+                width: 100%;
+            }
+        }
+    }
+
+    section:nth-child(2) {
+        margin: {
+            left: 20%;
+            right: 10%;
+        }
+
+        @media #{$mobile} {
+            margin: 0;
+        }
+    }
+
+}
+
+
+.ligneInput {
+
+    display: flex;
+
+    @media #{$mobile} {
+        flex-direction: column;
+    }
+
+    margin-bottom:1em;
+
+    .labelInput:nth-child(1) {
+
+        margin-right: 2em;
+        width: 20%;
+
+        @media #{$mobile} {
+            width: 100%;
+        }
+    }
+
+    .labelInput:nth-child(2) {
+        width: 100%;
+    }
+
+    @media #{$mobile} {
+
+        #divNom,
+        #prenom,
+        #codePostal {
+            width: 100%;
+
+        }
+    }
+
+    #divNom {
+        width: 55%;
+    }
+
+    #prenom {
+
+        width: 60%;
+
+    }
+
+    #codePostal {
+        width: 7em;
+    }
+
+    #numApt {
+        width: 7em;
+    }
+
+    input:disabled {
+        background-color: rgba(192, 192, 192, 0.438);
+    }
+
+
+}
+
+
+#numRue {
+    width: 5em;
+}
+
+main input,
+label,
+p,
+button {
+
+    font-size: 18px;
+}
+
+input {
+    border: solid 1px;
+    border-radius: $radius;
+    height: 3em;
+    margin: 10px 0;
+    padding: 1em;
+    width: 100%;
+
+    .btnJaune {
+        padding-top: 8px;
+
+    }
+
+
+}
+
+section:nth-child(1) {
+    .bouton {
+        height: 4em;
+        padding: math.div($pad, 2) $pad;
+
+        margin: {
+            top: 3em;
+            right: 2em;
+            left: 1em;
+        }
+        width:95%;
+    }
+}
+
+aside+section {
+    width: fit-content;
+    margin-right: 5%;
+}
+
+section {
+    width: 40%;
+
+    article {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: max-content;
+        height: max-content;
+        padding: $pad;
+
+        @media #{$mobile} {
+            width: fit-content;
+
+            .labelInput {
+                flex-direction: column;
+            }
+
+            form {
+                width: 100%;
+            }
+
+
+        }
+    }
+}
+
+div {
+    &.row {
+        margin: 1em 0;
+    }
+}
+
+
+.ligne {
+    border: solid 2px;
+    border-radius: 10px;
+
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+
+    div {
+        padding: 0.5em;
+    }
+
+    .prixPoub {
+        display: flex;
+        align-items: center;
+    }
+
+
+
+}
+
+.prixAffiche {
+    color: $colP;
+}
+
+#articles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+aside {
+    margin: 0;
+
+    height: 100%;
+
+    section,
+    article {
+        height: 100%;
+    }
+}
+
+#secRecap {
+    width: 100%;
+
+}
+
+#recapitulatif {
+
+    width: 40em;
+    height: 50em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    border: {
+        right: solid;
+        radius: 0;
+    }
+
+    #recap {
+        height: 100%;
+    }
+
+    #prixTTCRecap {
+        justify-self: flex-end;
+
+        font: {
+            weight: bold;
+            size: $MoyTitle;
+        }
+    }
+
+    .libelleProdRecap {
+        display: flex;
+        justify-content: space-between;
+        background-color: $colS;
+        border-radius: $radius;
+        padding: 1em;
+        width: 90%;
+
+    }
+
+}
+
+.dateCVC {
+    display: flex;
+
+    .labelInput:nth-child(1) input {
+        width: 6rem;
+        margin-right: 5rem;
+    }
+
+    .labelInput:nth-child(2) input {
+        width: 5rem;
+    }
+}
+
+#poubelle {
+    border: none;
+    border-radius: 10px;
+    background-color: $colS;
+
+    img {
+        width: 30px;
+    }
+
+    &:hover {
+        background-color: color.change($colP, $lightness: 70%);
+    }
+}
+
+.conteneur {
+    width: 60%;
+
+    @media #{$mobile} {
+        width: 100%;
+    }
+}
+
+.ariane {
+    display: flex;
+    justify-content: center;
+
+    .arianeItem {
+        font-size: 0;
+    }
+
+    align-self:flex-start;
+
+
+}
+
+.checkboxCGV {
+    input {
+        width: 1.5em;
+        height: 1.5em;
+        margin-right: 1em;
+    }
+
+    label {
+        margin-top: 1em;
+        height: 1em;
+    }
+
+    display:flex;
+    flex-direction: row;
+
+}
+
+#btnAnnuler {
+    margin-right: 3rem;
+}
+
+#infosPaiement {
+    display: flex;
+    flex-direction: column;
+
+    nav {
+        align-self: flex-start;
+    }
+}
+
+#btnPayer,
+#btnAnnuler {
+
+    height: 3rem;
+    padding: 0;
+    width: 10rem;
+
+    @media #{$mobile} {
+        margin-top: 2rem;
+    }
+}
+
+#confirmation {
+    display: none;
+    position: absolute;
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.205);
+    
+    article {
+        overflow-y:scroll;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width: 50%;
+        height: 30%;
+        border-radius: $radius * 2;
+
+        h1 {
+            align-self: center;
+        }
+
+        .bouton {
+            height: 4rem;
+            width: 10rem;
+            font-size: 28px;
+
+        }
+
+        .bouton:nth-child(1) {
+            margin-right: 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+        }
+        h3{
+            border-bottom:solid;
+        }
+        p{
+            background-color:rgb(224, 224, 224);
+            padding:2em;
+            border-radius:$radius * 2;
+        }
+
+        padding:5%;
+
+    }
+}
+.prixNormalbarre{
+            color: gray;
+            text-decoration:line-through;
+            
+        }
+.prixReducRed,.remise{
+    
+    display: block;
+    color : $inverse;
+}
+.remise{
+    font-size: small; 
+}

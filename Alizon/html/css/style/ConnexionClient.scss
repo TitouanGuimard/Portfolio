@@ -1,0 +1,106 @@
+@use '../tools/vFront' as *;
+@use '../style/styleCom' as *;
+@use '../tools/mixin/com' as *;
+
+header{
+    justify-self:center;
+    display:flex;
+    margin :1em 0;
+    justify-content: center;
+    background-color: white;
+}
+
+
+main{
+    padding-bottom: 2em;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    border:#A1A1A1 solid 0.01em;
+    border-radius:$radius;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    width:35em;
+    margin-top: 1em;
+    justify-self:center;
+    padding:2em;
+    font-family: 'mulish';
+    @media #{$mobile}{
+        width:85%;
+    }
+    input{
+        border:solid 1px;
+        border-radius:$radius;
+        height:3em;
+        margin:10px 0;
+        padding:10px;
+        
+    }
+    .bouton{
+    @include bouton;
+    height: 4em;
+    color:white;
+    font-family: 'mulish';
+    font-size:16px;
+    width: 100%;
+    @media screen and ($mobile) {
+            width: 100%;
+        }
+    }
+    label{
+        font-weight:bold;
+    }
+    >h2{
+        margin:0;
+    }
+    
+}
+
+
+
+aside{
+    display:flex;
+    flex-direction: column;
+    justify-self:center;
+    font-family: 'mulish';
+    figure{
+        display:flex;
+        img{
+            margin: 0 5px;
+            width: 100px;
+            @media screen and ($mobile){
+                width: 17%;
+                height:50px;
+            }
+        }
+       
+        }
+    }
+
+    .bouton{
+        @include bouton;
+        padding:1em;
+        width:80%;
+        margin-bottom:1em;
+        
+    }
+
+    .btnJaune{
+        @include bouton($eleOrange);
+        padding:1em; 
+        width:30%;
+    }
+
+    .bouton-connexion{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        a{
+            text-decoration:none;
+        }
+    }
+
