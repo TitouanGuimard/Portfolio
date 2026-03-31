@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV – Titouan Guimard</title>
+<!-- Polices système intégrées - aucune dépendance externe -->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e4de;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #f5f2ec;
+    display: grid;
+    grid-template-columns: 68mm 1fr;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: #1a2332;
+    color: #d4cfc6;
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .photo-wrap {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #c8a96e;
+    margin: 0 auto;
+  }
+  .photo-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    background: #2e3d52;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #c8a96e;
+    font-family: 'Georgia', 'Palatino Linotype', serif;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #e8c87e;
+    font-weight: 600;
+    border-bottom: 1px solid #c8a96e55;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 7px;
+    color: #ddd8d0;
+  }
+  .contact-icon {
+    color: #e8c87e;
+    font-size: 13px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .skill-tag {
+    background: #2e3d52;
+    border: 1px solid #c8a96e66;
+    color: #ddd8d0;
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #ddd8d0;
+    margin-bottom: 9px;
+  }
+  .lang-level {
+    font-size: 11px;
+    color: #e8c87e;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .interests-list {
+    font-size: 11px;
+    color: #c8c3ba;
+    line-height: 1.8;
+  }
+  .interests-list li {
+    list-style: none;
+    padding-left: 12px;
+    position: relative;
+  }
+  .interests-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #e8c87e;
+    font-size: 10px;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .header-block {}
+  .name {
+    font-family: 'Georgia', 'Palatino Linotype', serif;
+    font-size: 38px;
+    line-height: 1;
+    color: #1a2332;
+    letter-spacing: -0.5px;
+  }
+  .name span {
+    color: #c8a96e;
+  }
+  .tagline {
+    font-size: 12px;
+    color: #3a4a5a;
+    line-height: 1.7;
+    margin-top: 10px;
+    font-weight: 400;
+    max-width: 360px;
+    border-left: 2px solid #c8a96e;
+    padding-left: 10px;
+  }
+
+  .section {}
+  .section-title {
+    font-family: 'Georgia', 'Palatino Linotype', serif;
+    font-size: 14.5px;
+    color: #1a2332;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 13px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #c8a96e55;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0 12px;
+    margin-bottom: 15px;
+  }
+  .entry-year {
+    font-size: 11px;
+    color: #b07a30;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    padding-top: 2px;
+    text-align: right;
+  }
+  .entry-content {}
+  .entry-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a2332;
+    margin-bottom: 2px;
+  }
+  .entry-sub {
+    font-size: 11.5px;
+    color: #4a6070;
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+  .entry-desc {
+    font-size: 11.5px;
+    color: #3a4a5a;
+    line-height: 1.7;
+  }
+  .entry-desc li {
+    list-style: none;
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 3px;
+  }
+  .entry-desc li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: #c8a96e;
+    font-weight: bold;
+  }
+
+  .project-entry {
+    background: #1a23320a;
+    border-left: 3px solid #c8a96e;
+    padding: 11px 15px;
+    margin-bottom: 11px;
+    border-radius: 0 3px 3px 0;
+  }
+  .project-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a2332;
+    margin-bottom: 3px;
+  }
+  .project-meta {
+    font-size: 11px;
+    color: #b07a30;
+    margin-bottom: 5px;
+    letter-spacing: 0.03em;
+    font-weight: 500;
+  }
+  .project-desc {
+    font-size: 11.5px;
+    color: #3a4a5a;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { background: none; padding: 0; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div>
+      <div class="photo-wrap">
+        <img src="data:image/jpeg;base64,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" alt="Photo de Titouan Guimard" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Contact</div>
+      <div class="contact-item"><span class="contact-icon">✆</span> 07 49 40 65 15</div>
+      <div class="contact-item"><span class="contact-icon">✉</span> guimardtitouan40@gmail.com</div>
+      <div class="contact-item"><span class="contact-icon">⌂</span> 5 rue du Blavet, Landerneau</div>
+      <div class="contact-item"><span class="contact-icon">◈</span> 19 ans · Permis B</div>
+    </div>
+
+    <div>
+      <div class="section-label">Compétences</div>
+      <div class="skills-grid">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">SCSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">Bash</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Langues</div>
+      <div class="lang-row">
+        <span>Anglais</span>
+        <span class="lang-level">B1</span>
+      </div>
+      <div class="lang-row">
+        <span>Espagnol</span>
+        <span class="lang-level">B1</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Centres d'intérêt</div>
+      <ul class="interests-list">
+        <li>Musculation (aujourd'hui)</li>
+        <li>Course à pied (aujourd'hui)</li>
+        <li>Natation en club – 9 ans, niveau régional</li>
+        <li>Concours de robotique</li>
+        <li>Programmation compétitive (OSINT, Glitch, Scratch)</li>
+        <li>Voyages : Espagne, Italie, Angleterre</li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="header-block">
+      <div class="name">Titouan <span>Guimard</span></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Formation</div>
+      <div class="entry">
+        <div class="entry-year">2024</div>
+        <div class="entry-content">
+          <div class="entry-title">BUT Informatique – 2ème année</div>
+          <div class="entry-sub">IUT de Lannion · Lannion</div>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-year">2023</div>
+        <div class="entry-content">
+          <div class="entry-title">Baccalauréat Général</div>
+          <div class="entry-sub">Lycée de l'Elorn · Landerneau</div>
+          <div class="entry-desc">Spécialités : Mathématiques, Numérique et Sciences de l'Ingénieur</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Expériences</div>
+      <div class="entry">
+        <div class="entry-year">2023</div>
+        <div class="entry-content">
+          <div class="entry-title">Stage – Technicien de maintenance</div>
+          <div class="entry-sub">CFAI de Brest (29)</div>
+          <ul class="entry-desc">
+            <li>Maintenance du parc informatique</li>
+            <li>Débogage de logiciels</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-year">2025</div>
+        <div class="entry-content">
+          <div class="entry-title">Emploi saisonnier – Service technique</div>
+          <div class="entry-sub">Mairie de Santec · 2 mois</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Projets réalisés</div>
+      <div class="project-entry">
+        <div class="project-title">Partie Volley des JO 2025</div>
+        <div class="project-meta">2025 · En équipe de 4 · Cadre universitaire · PHP, JS, Git</div>
+        <div class="project-desc">Gestion de projet, communication par e-mail, apprentissage du langage JavaScript et de l'outil Github.</div>
+      </div>
+      <div class="project-entry">
+        <div class="project-title">Création Web</div>
+        <div class="project-meta">2026 · Équipe de 7 · Cadre universitaire · PHP, JS, PostgreSQL, Git, C</div>
+        <div class="project-desc">Développement d'une application web complète. Gestion de projet, travail en équipe et apprentissage de la méthode Agile.</div>
+      </div>
+    </div>
+  </aside>
+</div>
+</body>
