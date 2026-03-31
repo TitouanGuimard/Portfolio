@@ -1,0 +1,105 @@
+@use "../tools/vFront" as *;
+/*###############################
+#            HEADER             #
+###############################*/
+header{
+    transition: transform 0.3s ease;
+    top : 0;
+    .mobile-only{
+        display: none;
+    }
+    
+    form{
+        display: flex;
+        width: 60%;
+        align-items: center;
+        margin-left: auto;
+        input[type=search]{
+            padding: 1em;
+            border-radius: 40px;
+            border: none;
+            max-width: 700px;
+            width: 80%;
+            min-width: none;
+            font-size: $Poltext;
+        }
+        input[type=search]::-webkit-search-cancel-button {
+                position: relative;
+                left: -40px;
+                
+            }
+        button{
+            display: flex;
+            z-index: 2;
+            align-items: center;
+            height: 32px;
+            border-radius: 40px;
+            border: none;
+            background-color: rgba(#808080,0.2);
+            position: relative;
+            left: -40px;
+        }
+    }
+    
+    
+
+    z-index: 1000;
+    position: fixed;
+    display: inline-flex;
+    background: {
+        color: $colP;
+    }
+    height: 80px;
+    width: 100%;
+    align-items: center;
+
+    .logo_alizon_front{
+        width: 118px;
+        height: auto;
+        padding-left: 80px;
+        left: 0;
+        margin:$marg;
+    }
+
+    .connexion-panier{
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        a{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding-right: 20px;
+            color: $blanc;
+            text-decoration: none;
+        }
+        svg{
+            padding-right: 10px;
+        }
+
+    }
+
+    @media #{$mobile}{
+        .logo_alizon_front{
+            padding-left: 30px;
+            width: 100px;
+        }
+
+        .tab-only{
+            display: none;
+        }
+
+        .mobile-only{
+            display: block;
+            padding-left: 20px;
+            
+        }
+        button{
+            background: none;
+            border: none;
+        }
+        nav svg{
+            padding-right: 30px;
+        }
+    }
+}
