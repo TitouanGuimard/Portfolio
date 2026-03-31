@@ -1,0 +1,21 @@
+@use "../components/fonts" as *;
+// Variables de couleurs.  
+$blanc : white;
+$noir: black;
+$colP : #CD4B22;
+$colS : #FFD6C2;
+$eleOrange : #FCB66B;
+$eleBleu : #6CA6E9;
+$inverse : #FF4444;
+$mobile : "screen and (max-width : 428px)";
+$tablette : "screen and (max-width : 1440px)";
+
+// Variables de texte 
+$radius : 1em; 
+$Poltitle : "Baloo";
+$Poltext : "Mulish";
+$txtSize : 14px;
+$TrGdTitle : 40px;  //Pour les H1  
+$GdTitle: 32px;     //Pour les H2 
+$MoyTitle : 24px;   //Pour les H3
+$PetTitle : 20px;   //Pour les H4 
