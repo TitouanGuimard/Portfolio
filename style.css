@@ -109,10 +109,11 @@ ul ul{
 }
 
 /* Buttons */
-input[type="button"]{
+input[type="button"], button{
     background:#00bcd4;
     border:none;
     padding:8px 12px;
+    margin-bottom: 3px;
     border-radius:5px;
     cursor:pointer;
     color:white;
@@ -120,7 +121,7 @@ input[type="button"]{
     transition:0.3s;
 }
 
-input[type="button"]:hover{
+input[type="button"]:hover, button:hover{
     background:#0097a7;
 }
 
