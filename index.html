@@ -36,12 +36,32 @@
             <p>LinkedIn: <a href="https://www.linkedin.com/feed/?trk=404_page" target="_blank">Titouan Guimard</a></p>
         </section>
         <section id="projets">
-            <h2>Projets</h2>
-            <ul>
-                <li><a href="JO/accueil.html">Projet 1: Site web des JO 2025 - La partie Volley</a></li>
-                <li><a href="presentationAlizon.php">Projet 2: Alizon - Marcket place de produits Bretons</a></li>
-            </ul>
-        </section>
+    <h2>Projets</h2>
+    <ul>
+        <li><button onclick="ouvrirCarousel('carousel1')">Projet 1: Site web des JO 2025</button></li>
+        <li><button onclick="ouvrirCarousel('carousel2')">Projet 2: Alizon</button></li>
+    </ul>
+
+    <!-- Carousel Projet 1 -->
+    <div id="carousel1" class="carousel">
+        <span class="close" onclick="fermerCarousel('carousel1')">&times;</span>
+        <img class="slide" src="img/jo1.png">
+        <img class="slide" src="img/jo2.png">
+        <img class="slide" src="img/jo3.png">
+        <button onclick="changerSlide(-1, 'carousel1')">❮</button>
+        <button onclick="changerSlide(1, 'carousel1')">❯</button>
+    </div>
+
+    <!-- Carousel Projet 2 -->
+    <div id="carousel2" class="carousel">
+        <span class="close" onclick="fermerCarousel('carousel2')">&times;</span>
+        <img class="slide" src="img/alizon1.png">
+        <img class="slide" src="img/alizon2.png">
+        <img class="slide" src="img/alizon3.png">
+        <button onclick="changerSlide(-1, 'carousel2')">❮</button>
+        <button onclick="changerSlide(1, 'carousel2')">❯</button>
+    </div>
+</section>
         <section id="competences">
             <h2>Compétences</h2>
             <ul>
