@@ -26,7 +26,7 @@
     <main>
         <section id="accueil">
             <h1>Titouan GUIMARD</h1>
-            <p>Je suis un développeur à la recherche de nouvelles opportunités professionnelles.</p>
+            <p>Je suis un étudiant en BUT informatique à la recherche de nouvelles opportunités professionnelles.</p>
             <a href="cv.html">Mon CV</a>
         </section>
         <section id="contacts">
@@ -36,32 +36,34 @@
             <p>LinkedIn: <a href="https://www.linkedin.com/feed/?trk=404_page" target="_blank">Titouan Guimard</a></p>
         </section>
         <section id="projets">
-    <h2>Projets</h2>
-    <ul>
-        <li><button onclick="ouvrirCarousel('carousel1')">Projet 1: Site web des JO 2025</button></li>
-        <li><button onclick="ouvrirCarousel('carousel2')">Projet 2: Alizon</button></li>
-    </ul>
+            <h2>Projets</h2>
+            <ul>
+                <li>
+                    <button onclick="carrouselouvrir(1)">
+                        Projet 1: Site web des JO 2025
+                    </button>
+                </li>
 
-    <!-- Carousel Projet 1 -->
-    <div id="carousel1" class="carousel">
-        <span class="close" onclick="fermerCarousel('carousel1')">&times;</span>
-        <img class="slide" src="img/jo1.png">
-        <img class="slide" src="img/jo2.png">
-        <img class="slide" src="img/jo3.png">
-        <button onclick="changerSlide(-1, 'carousel1')">❮</button>
-        <button onclick="changerSlide(1, 'carousel1')">❯</button>
-    </div>
+                <div id="carousel1" style="display: none;">
+                    <button onclick="prev(1)">❮</button>
+                    <img id="image1" src="chat.jpeg">
+                    <button onclick="next(1)">❯</button>
+                </div>
 
-    <!-- Carousel Projet 2 -->
-    <div id="carousel2" class="carousel">
-        <span class="close" onclick="fermerCarousel('carousel2')">&times;</span>
-        <img class="slide" src="img/alizon1.png">
-        <img class="slide" src="img/alizon2.png">
-        <img class="slide" src="img/alizon3.png">
-        <button onclick="changerSlide(-1, 'carousel2')">❮</button>
-        <button onclick="changerSlide(1, 'carousel2')">❯</button>
-    </div>
-</section>
+
+                <li>
+                    <button onclick="carrouselouvrir(2)">
+                        Projet 2: Alizon
+                    </button>
+                </li>
+
+                <div id="carousel2" style="display: none;">
+                    <button onclick="prev(2)">❮</button>
+                    <img id="image2" src="chat.jpeg">
+                    <button onclick="next(2)">❯</button>
+                </div>
+            </ul>
+        </section>
         <section id="competences">
             <h2>Compétences</h2>
             <ul>
@@ -160,6 +162,42 @@
             overlay.style.display = "none";
         } else {
             overlay.style.display = "block";
+        }
+    }
+
+    let images = {
+        1: ["chat.jpeg", "Coocher.jpeg"],
+        2: ["chat.jpeg", "Sans titre.jpeg"]
+    };
+
+    let index = {
+        1: 0,
+        2: 0
+    };
+
+    function showImage(id) {
+        document.getElementById("image" + id).src = images[id][index[id]];
+    }
+
+    function next(id) {
+        index[id] = (index[id] + 1) % images[id].length;
+        showImage(id);
+    }
+
+    function prev(id) {
+        index[id] = (index[id] - 1 + images[id].length) % images[id].length;
+        showImage(id);
+    }
+
+    function carrouselouvrir(id) {
+        const carousel = document.getElementById("carousel" + id);
+
+        if (carousel.style.display === "none" || carousel.style.display === "") {
+            carousel.style.display = "block";
+            index[id] = 0;
+            showImage(id);
+        } else {
+            carousel.style.display = "none";
         }
     }
 </script>
